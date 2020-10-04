@@ -46,13 +46,8 @@ def chat():
     if request.method == "POST":
         request_data = request.get_json()
         message = request_data['message']
-        status, response = bot.chat(message)
+        response = bot.chat(message)
         data = {}
-        if status == 0:
-            data["reply"] = response
-            data["status"] = 'Success'
-            return jsonify(data)
-        else:
-            data["reply"] = response
-            data["status"] = 'failed'
-            return jsonify(data)
+        data["reply"] = response
+        data["status"] = 'Success'
+        return jsonify(data)
